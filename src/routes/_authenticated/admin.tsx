@@ -10,7 +10,10 @@ export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
     meta: [
       { title: "Panel administrativo | CompuRepuestos" },
-      { name: "description", content: "Gestión de inventario, compras, ventas, bancos y usuarios." },
+      {
+        name: "description",
+        content: "Gestión de inventario, compras, ventas, bancos y usuarios.",
+      },
       { property: "og:title", content: "Panel administrativo | CompuRepuestos" },
       { property: "og:description", content: "Gestión interna de la tienda." },
       { property: "og:type", content: "website" },
@@ -48,7 +51,9 @@ function AdminLayout() {
           <Link to="/" className="font-display text-lg uppercase tracking-wide">
             CompuRepuestos
           </Link>
-          <span className="rounded-full bg-primary-foreground/15 px-3 py-1 text-xs uppercase tracking-wide">Panel</span>
+          <span className="rounded-full bg-primary-foreground/15 px-3 py-1 text-xs uppercase tracking-wide">
+            Panel
+          </span>
           <div className="ml-auto flex items-center gap-3 text-sm">
             <span className="hidden sm:inline opacity-80">
               {roles.map((r) => ROLE_LABEL[r as AppRole] ?? r).join(", ") || "Sin rol"}
@@ -118,8 +123,8 @@ function AdminLayout() {
             <div className="rounded-lg border border-border bg-card p-8 text-center">
               <h1 className="font-display text-xl uppercase text-primary">Acceso restringido</h1>
               <p className="mx-auto mt-2 max-w-md text-sm text-muted-foreground">
-                Tu cuenta todavía no tiene un rol en el panel. Si eres el dueño de la tienda y aún no hay ningún
-                administrador, puedes tomar ese rol ahora.
+                Tu cuenta todavía no tiene un rol en el panel. Si eres el dueño de la tienda y aún
+                no hay ningún administrador, puedes tomar ese rol ahora.
               </p>
               <Button className="mt-4" onClick={claim} disabled={claiming}>
                 {claiming ? "Asignando…" : "Convertirme en administrador"}

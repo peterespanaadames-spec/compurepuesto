@@ -33,7 +33,10 @@ export function usePermissions() {
       const uid = auth.user?.id;
       if (!uid) return { roles: [] as string[], perms: [] as string[] };
 
-      const { data: roleRows, error } = await supabase.from("user_roles").select("role").eq("user_id", uid);
+      const { data: roleRows, error } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", uid);
       if (error) throw error;
       const roles = (roleRows ?? []).map((r) => r.role as string);
 
@@ -66,4 +69,10 @@ export const money = (value: number | string | null | undefined) =>
   `$${Number(value ?? 0).toLocaleString("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
 export const shortDate = (value: string | null | undefined) =>
-  value ? new Date(value).toLocaleDateString("es-VE", { day: "2-digit", month: "short", year: "numeric" }) : "—";
+  value
+    ? new Date(value).toLocaleDateString("es-VE", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      })
+    : "—";

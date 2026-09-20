@@ -10,7 +10,10 @@ export const Route = createFileRoute("/_authenticated/cuenta")({
   head: () => ({
     meta: [
       { title: "Mi cuenta | CompuRepuestos" },
-      { name: "description", content: "Revisa tu historial de compras y actualiza tus datos personales." },
+      {
+        name: "description",
+        content: "Revisa tu historial de compras y actualiza tus datos personales.",
+      },
       { property: "og:title", content: "Mi cuenta | CompuRepuestos" },
       { property: "og:description", content: "Historial de compras y datos personales." },
       { property: "og:type", content: "website" },
@@ -39,7 +42,10 @@ function AccountPage() {
         .eq("id", auth.user!.id)
         .maybeSingle();
       if (error) throw error;
-      return { profile: (data ?? { full_name: "", phone: "", address: "" }) as Profile, email: auth.user?.email ?? "" };
+      return {
+        profile: (data ?? { full_name: "", phone: "", address: "" }) as Profile,
+        email: auth.user?.email ?? "",
+      };
     },
   });
 
@@ -89,7 +95,9 @@ function AccountPage() {
           </Link>
           <div className="flex items-center gap-2">
             <Link to="/">
-              <Button variant="outline" size="small">Seguir comprando</Button>
+              <Button variant="outline" size="small">
+                Seguir comprando
+              </Button>
             </Link>
             <Button variant="ghost" size="small" onClick={signOut}>
               <LogOut className="size-4" /> Salir
@@ -103,11 +111,25 @@ function AccountPage() {
           <h1 className="font-display text-2xl text-primary">Mis datos</h1>
           <p className="mt-1 text-sm text-muted-foreground">{profileQuery.data?.email}</p>
           <form className="mt-5 space-y-4" onSubmit={saveProfile}>
-            <Field label="Nombre y apellido" value={form.full_name} onChange={(v) => setForm({ ...form, full_name: v })} />
-            <Field label="Teléfono" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
-            <Field label="Dirección de entrega" value={form.address} onChange={(v) => setForm({ ...form, address: v })} />
+            <Field
+              label="Nombre y apellido"
+              value={form.full_name}
+              onChange={(v) => setForm({ ...form, full_name: v })}
+            />
+            <Field
+              label="Teléfono"
+              value={form.phone}
+              onChange={(v) => setForm({ ...form, phone: v })}
+            />
+            <Field
+              label="Dirección de entrega"
+              value={form.address}
+              onChange={(v) => setForm({ ...form, address: v })}
+            />
             {saved && <p className="text-sm font-semibold text-primary">{saved}</p>}
-            <Button type="submit" className="w-full">Guardar cambios</Button>
+            <Button type="submit" className="w-full">
+              Guardar cambios
+            </Button>
           </form>
         </section>
 
@@ -121,7 +143,11 @@ function AccountPage() {
                 <li key={order.id} className="rounded-sm border border-border p-4">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <p className="text-sm font-semibold text-card-foreground">
-                      {new Date(order.created_at).toLocaleDateString("es-VE", { day: "2-digit", month: "long", year: "numeric" })}
+                      {new Date(order.created_at).toLocaleDateString("es-VE", {
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric",
+                      })}
                     </p>
                     <span className="rounded-sm bg-muted px-2 py-1 text-[11px] font-bold uppercase text-muted-foreground">
                       {order.status}
@@ -130,7 +156,9 @@ function AccountPage() {
                   <ul className="mt-3 space-y-1 text-sm text-muted-foreground">
                     {order.order_items.map((item, index) => (
                       <li key={index} className="flex justify-between gap-3">
-                        <span>{item.quantity} × {item.product_name}</span>
+                        <span>
+                          {item.quantity} × {item.product_name}
+                        </span>
                         <span>${Number(item.unit_price) * item.quantity}</span>
                       </li>
                     ))}
@@ -146,7 +174,9 @@ function AccountPage() {
               <PackageCheck className="mx-auto size-9 text-muted-foreground" />
               <p className="mt-3 font-semibold">Todavía no tienes compras registradas.</p>
               <Link to="/">
-                <Button variant="outline" className="mt-4">Ver productos</Button>
+                <Button variant="outline" className="mt-4">
+                  Ver productos
+                </Button>
               </Link>
             </div>
           )}
@@ -156,7 +186,15 @@ function AccountPage() {
   );
 }
 
-function Field({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
+function Field({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+}) {
   return (
     <label className="block">
       <span className="mb-1 block text-xs font-bold uppercase text-muted-foreground">{label}</span>

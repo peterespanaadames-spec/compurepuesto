@@ -12,7 +12,8 @@ export const Route = createFileRoute("/auth")({
       { title: "Crear cuenta o ingresar | CompuRepuestos" },
       {
         name: "description",
-        content: "Crea tu cuenta de CompuRepuestos para seguir tus compras y guardar tus datos de entrega.",
+        content:
+          "Crea tu cuenta de CompuRepuestos para seguir tus compras y guardar tus datos de entrega.",
       },
       { property: "og:title", content: "Tu cuenta en CompuRepuestos" },
       {
@@ -135,11 +136,28 @@ function AuthPage() {
               <>
                 <Field label="Nombre y apellido" value={fullName} onChange={setFullName} required />
                 <Field label="Teléfono" value={phone} onChange={setPhone} type="tel" required />
-                <Field label="Dirección de entrega" value={address} onChange={setAddress} required />
+                <Field
+                  label="Dirección de entrega"
+                  value={address}
+                  onChange={setAddress}
+                  required
+                />
               </>
             )}
-            <Field label="Correo electrónico" value={email} onChange={setEmail} type="email" required />
-            <Field label="Contraseña" value={password} onChange={setPassword} type="password" required />
+            <Field
+              label="Correo electrónico"
+              value={email}
+              onChange={setEmail}
+              type="email"
+              required
+            />
+            <Field
+              label="Contraseña"
+              value={password}
+              onChange={setPassword}
+              type="password"
+              required
+            />
 
             {error && <p className="text-sm font-semibold text-destructive">{error}</p>}
             {info && <p className="text-sm font-semibold text-primary">{info}</p>}
@@ -198,7 +216,9 @@ function Field({
 function traducir(message: string) {
   if (message.includes("Invalid login credentials")) return "Correo o contraseña incorrectos.";
   if (message.includes("Email not confirmed")) return "Confirma tu correo antes de ingresar.";
-  if (message.includes("already registered")) return "Ese correo ya tiene una cuenta. Intenta ingresar.";
-  if (message.includes("Password should be")) return "La contraseña debe tener al menos 6 caracteres.";
+  if (message.includes("already registered"))
+    return "Ese correo ya tiene una cuenta. Intenta ingresar.";
+  if (message.includes("Password should be"))
+    return "La contraseña debe tener al menos 6 caracteres.";
   return "No pudimos completar la operación. Intenta de nuevo.";
 }

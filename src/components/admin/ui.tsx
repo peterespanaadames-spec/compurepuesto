@@ -1,6 +1,14 @@
 import type { ReactNode } from "react";
 
-export function PageHeader({ title, subtitle, action }: { title: string; subtitle?: string; action?: ReactNode }) {
+export function PageHeader({
+  title,
+  subtitle,
+  action,
+}: {
+  title: string;
+  subtitle?: string;
+  action?: ReactNode;
+}) {
   return (
     <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
       <div>
@@ -12,7 +20,15 @@ export function PageHeader({ title, subtitle, action }: { title: string; subtitl
   );
 }
 
-export function Panel({ title, children, footer }: { title?: string; children: ReactNode; footer?: ReactNode }) {
+export function Panel({
+  title,
+  children,
+  footer,
+}: {
+  title?: string;
+  children: ReactNode;
+  footer?: ReactNode;
+}) {
   return (
     <section className="rounded-lg border border-border bg-card shadow-sm">
       {title ? (
@@ -26,11 +42,23 @@ export function Panel({ title, children, footer }: { title?: string; children: R
   );
 }
 
-export function Stat({ label, value, tone = "default" }: { label: string; value: string; tone?: "default" | "danger" }) {
+export function Stat({
+  label,
+  value,
+  tone = "default",
+}: {
+  label: string;
+  value: string;
+  tone?: "default" | "danger";
+}) {
   return (
     <div className="rounded-lg border border-border bg-card p-4 shadow-sm">
       <p className="text-xs uppercase tracking-wide text-muted-foreground">{label}</p>
-      <p className={`mt-1 font-display text-xl ${tone === "danger" ? "text-destructive" : "text-primary"}`}>{value}</p>
+      <p
+        className={`mt-1 font-display text-xl ${tone === "danger" ? "text-destructive" : "text-primary"}`}
+      >
+        {value}
+      </p>
     </div>
   );
 }
@@ -133,14 +161,20 @@ export function StatusBadge({ status }: { status: string }) {
       : status === "vencida" || status === "vencido" || status === "anulada"
         ? "bg-destructive/10 text-destructive"
         : "bg-muted text-muted-foreground";
-  return <span className={`rounded-full px-2 py-1 text-xs font-semibold capitalize ${tone}`}>{status}</span>;
+  return (
+    <span className={`rounded-full px-2 py-1 text-xs font-semibold capitalize ${tone}`}>
+      {status}
+    </span>
+  );
 }
 
 export function NoAccess() {
   return (
     <div className="rounded-lg border border-border bg-card p-8 text-center">
       <p className="font-display text-lg text-primary">Sin permiso</p>
-      <p className="mt-2 text-sm text-muted-foreground">No tienes acceso a esta sección. Pídeselo al administrador.</p>
+      <p className="mt-2 text-sm text-muted-foreground">
+        No tienes acceso a esta sección. Pídeselo al administrador.
+      </p>
     </div>
   );
 }

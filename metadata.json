@@ -1,0 +1,6 @@
+{
+  "name": "CompuRepuestos",
+  "description": "Tecnología, artículos de oficina y repuestos de motos con entrega local en Venezuela.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
